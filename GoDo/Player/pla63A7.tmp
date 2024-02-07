@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://6xabkku7re5v"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_2b78b"]
+[ext_resource type="Texture2D" uid="uid://c3rcto0qeoxbq" path="res://Textures/SpaceShooter_Assets/player_sheet.png" id="1_pi3bu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4v7oo"]
+radius = 32.2966
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_2b78b")
+speed = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.00002, -0.999969)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_pi3bu")
+hframes = 3
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.981642, 0.966882)
+shape = SubResource("CircleShape2D_4v7oo")

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dk2nd52gl5f4x"]
+
+[ext_resource type="PackedScene" uid="uid://6xabkku7re5v" path="res://Player/player.tscn" id="1_0yfpn"]
+[ext_resource type="Texture2D" uid="uid://dlg6i86spfgre" path="res://Textures/SpaceShooter_Assets/backgroundColor.png" id="1_07lpr"]
+[ext_resource type="Texture2D" uid="uid://dc05rkilpc2j7" path="res://Textures/SpaceShooter_Assets/starBig.png" id="3_kw8kq"]
+[ext_resource type="PackedScene" uid="uid://ns8j66bx6fed" path="res://MainScenes/meteor.tscn" id="4_l8i5i"]
+
+[node name="GamePlay" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(3.01333, 3.97333)
+texture = ExtResource("1_07lpr")
+centered = false
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Background"]
+position = Vector2(75.9956, 32.2148)
+scale = Vector2(0.331858, 0.251678)
+amount = 50
+lifetime = 8.0
+texture = ExtResource("3_kw8kq")
+emission_shape = 3
+emission_rect_extents = Vector2(230, 100)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 70.0
+initial_velocity_max = 70.0
+angle_min = 50.0
+angle_max = 50.0
+scale_amount_min = 0.1
+
+[node name="Player" parent="." instance=ExtResource("1_0yfpn")]
+position = Vector2(225, 303)
+
+[node name="Meteor" parent="." instance=ExtResource("4_l8i5i")]
+position = Vector2(235, 84)
