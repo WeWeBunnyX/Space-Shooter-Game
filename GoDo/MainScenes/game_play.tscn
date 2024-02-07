@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dk2nd52gl5f4x"]
+[gd_scene load_steps=6 format=3 uid="uid://dk2nd52gl5f4x"]
 
 [ext_resource type="PackedScene" uid="uid://6xabkku7re5v" path="res://Player/player.tscn" id="1_0yfpn"]
 [ext_resource type="Texture2D" uid="uid://dlg6i86spfgre" path="res://Textures/SpaceShooter_Assets/backgroundColor.png" id="1_07lpr"]
 [ext_resource type="Texture2D" uid="uid://dc05rkilpc2j7" path="res://Textures/SpaceShooter_Assets/starBig.png" id="3_kw8kq"]
 [ext_resource type="PackedScene" uid="uid://ns8j66bx6fed" path="res://MainScenes/meteor.tscn" id="4_l8i5i"]
+[ext_resource type="PackedScene" uid="uid://4ch2j12nowr2" path="res://MainScenes/hud.tscn" id="5_6imay"]
 
 [node name="GamePlay" type="Node2D"]
 
@@ -28,6 +29,14 @@ initial_velocity_max = 70.0
 angle_min = 50.0
 angle_max = 50.0
 scale_amount_min = 0.1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("5_6imay")]
+offset_left = 12.0
+offset_top = 5.0
+offset_right = 12.0
+offset_bottom = 5.0
 
 [node name="Player" parent="." instance=ExtResource("1_0yfpn")]
 position = Vector2(225, 303)

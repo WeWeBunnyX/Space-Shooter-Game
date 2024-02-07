@@ -19,6 +19,7 @@ var vel: Vector2 = Vector2(0, 0)
 
 func _ready(): #Shield function
 	shieldSprite.visible=false
+	Signals.emit_signal("on_player_life_change", life)
 
 @warning_ignore("unused_parameter")
 func _process(delta):
@@ -65,10 +66,9 @@ func damage(amount:int):
 	shieldSprite.visible=true
 	
 	life-=amount
-	print("Player Life=%s" % life)
+	Signals.emit_signal("on_player_life_change", life)
 
 	if life<=0:
-		print("Player Died!")
 		queue_free()
 
 
