@@ -5,18 +5,41 @@ extends Area2D
 @export var minRotation: float=-10
 @export var maxRotation: float=10
 
+@export var life: int=20
+
 var speed: float=0
 var rotationRate: float=0
+var PlayerinArea: Player=null
 
 func _ready():
 	speed= randf_range(minSpeed, maxSpeed)
 	rotationRate=randf_range(minRotation, maxRotation)
 
+func _process(delta):                  
+	if PlayerinArea!=null:
+		PlayerinArea.damage(1)      #Touch the meteor and boom, see line 38 and 43
+	
+	
+	
 func _physics_process(delta):
 	rotation_degrees+=rotationRate*delta # In degrees , whereas rotation function is in radians
 
 	position.y+=speed*delta
 
+func damage(amount: int):
+	life-=amount
+	if life<=0:
+		queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
+
+
+func _on_Meteor_area_entered(area):     
+	if area is Player:
+		PlayerinArea=area
+
+
+func _on_area_exited(area):        
+	if area is Player:
+		PlayerinArea=null
