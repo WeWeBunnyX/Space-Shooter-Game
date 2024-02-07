@@ -1,5 +1,5 @@
 extends Area2D
-
+var pMeteorEffect:=preload("res://MainScenes/meteor_effect.tscn")
 @export var minSpeed: float=10
 @export var maxSpeed: float=20
 @export var minRotation: float=-10
@@ -29,6 +29,9 @@ func _physics_process(delta):
 func damage(amount: int):
 	life-=amount
 	if life<=0:
+		var effect:=pMeteorEffect.instantiate()     #Meteror break effect
+		effect.position=position                    #Meteror break effect
+		get_parent().add_child(effect)              #Meteror break effect         
 		queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():

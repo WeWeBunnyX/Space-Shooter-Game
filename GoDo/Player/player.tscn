@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://6xabkku7re5v"]
+[gd_scene load_steps=9 format=3 uid="uid://6xabkku7re5v"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_2b78b"]
 [ext_resource type="Texture2D" uid="uid://c3rcto0qeoxbq" path="res://Textures/SpaceShooter_Assets/player_sheet.png" id="1_pi3bu"]
+[ext_resource type="Texture2D" uid="uid://dx7bp1m8xiwtb" path="res://Textures/SpaceShooter_Assets/shield.png" id="3_4gwd7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4v7oo"]
 radius = 32.2966
@@ -75,3 +76,10 @@ position = Vector2(0, -31)
 one_shot = true
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Shield" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_4gwd7")
+
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

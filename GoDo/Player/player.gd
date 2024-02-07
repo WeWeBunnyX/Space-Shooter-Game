@@ -9,11 +9,18 @@ var plBullet:= preload("res://MainScenes/bullet.tscn")
 #FireDelay Timer
 @onready var invincibilityTimer:=$InvincibilityTimer
 @onready var firedelay:=$FireDelayTimer
+@onready var shieldSprite:=$Shield
+
 @export var speed: float = 100
 @export var FireDelayTimer : float=0.1
+@export var DamageInvincibilityTime:=2.0
 @export var life : int=3
 var vel: Vector2 = Vector2(0, 0)
 
+func _ready(): #Shield function
+	shieldSprite.visible=false
+
+@warning_ignore("unused_parameter")
 func _process(delta):
 	if vel.x<0:
 		AnimatedSprite.play("left")
@@ -51,9 +58,19 @@ func _physics_process(delta):
 	position.y=clamp(position.y, 0 , viewRect.size.y)
 
 func damage(amount:int):
+	if !invincibilityTimer.is_stopped():
+		return
+	
+	invincibilityTimer.start(DamageInvincibilityTime)
+	shieldSprite.visible=true
+	
 	life-=amount
 	print("Player Life=%s" % life)
 
 	if life<=0:
 		print("Player Died!")
 		queue_free()
+
+
+func _on_invincibility_timer_timeout():   #Disappear Shield when away from meteor after a collision
+	shieldSprite.visible=false
