@@ -43,7 +43,7 @@ position = Vector2(225, 303)
 FireDelayTimer = 0.1
 
 [node name="Spawner" type="Node2D" parent="."]
-position = Vector2(234, 16)
+position = Vector2(228, -71)
 script = ExtResource("5_xqcma")
 
 [node name="SpawnerTime" type="Timer" parent="Spawner"]

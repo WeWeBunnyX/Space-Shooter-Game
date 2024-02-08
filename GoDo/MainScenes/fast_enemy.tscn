@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cryybiagwxunr"]
+
+[ext_resource type="PackedScene" uid="uid://c5slold0tmf0" path="res://MainScenes/enemy.tscn" id="1_v6fe2"]
+[ext_resource type="Script" path="res://MainScenes/fast_enemy.gd" id="2_crmfr"]
+
+[node name="FastEnemy" instance=ExtResource("1_v6fe2")]
+script = ExtResource("2_crmfr")
+rotationSpeed = 60
+verticalSpeed = 175.0
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.75, 0.75)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(-4.76837e-06, 0.999996)
+scale = Vector2(3.5, 3.6)

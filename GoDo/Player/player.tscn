@@ -47,6 +47,7 @@ animations = [{
 }]
 
 [node name="Player" type="Area2D"]
+z_index = 100
 script = ExtResource("1_2b78b")
 speed = 200.0
 FireDelayTimer = 0.5

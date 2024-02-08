@@ -22,12 +22,15 @@ theme_override_constants/separation = 5
 
 [node name="Life Icon3" parent="LifeContainer" instance=ExtResource("1_i5wf5")]
 layout_mode = 2
+stretch_mode = 5
 
 [node name="Life Icon" parent="LifeContainer" instance=ExtResource("1_i5wf5")]
 layout_mode = 2
+stretch_mode = 5
 
 [node name="Life Icon2" parent="LifeContainer" instance=ExtResource("1_i5wf5")]
 layout_mode = 2
+stretch_mode = 5
 
 [node name="Score" type="Label" parent="."]
 layout_mode = 1
