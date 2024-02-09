@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvk85i8ihbedm"]
+
+[ext_resource type="PackedScene" uid="uid://csjhrug1ekp2w" path="res://MainScenes/power_up.tscn" id="1_f37hf"]
+[ext_resource type="Script" path="res://MainScenes/rapid_power_up.gd" id="2_x3ctn"]
+
+[node name="RapidPowerUp" instance=ExtResource("1_f37hf")]
+script = ExtResource("2_x3ctn")
+rapidFireTime = 4.0
+
+[node name="Sprite2D" parent="." index="0"]
+region_rect = Rect2(517, 2, 234, 192)
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-3, 0)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(-2, 0.749996)
+scale = Vector2(2.475, 2.525)

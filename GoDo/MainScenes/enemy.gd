@@ -22,11 +22,16 @@ func fire():
 			get_tree().current_scene.add_child(bullet)
 	
 func damage(amount: int):
+	if enemyHealth<=0:        #https://www.youtube.com/watch?v=sYHiMJe1HcQ&list=PLah6faXAgguPlyHWM5G9in10UzRcdeb2R&index=32
+		return
+	
 	enemyHealth-=amount
 	if enemyHealth<=0:
 		var effect:=plEnemyExplosion.instantiate()
 		effect.global_position=global_position
 		get_tree().current_scene.add_child(effect)
+		
+		Signals.emit_signal("on_score_increment", 1)
 		
 		queue_free()
 	

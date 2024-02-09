@@ -15,5 +15,8 @@ func _on_area_entered(area):                     # adding this so bullets dont p
 		bulletEffect.position=position
 		get_parent().add_child(bulletEffect)
 		
+		var cam:=get_tree().current_scene.find_child("Camera2D",true,false)  #Shake camera
+		cam.shake(1)
+		
 		area.damage(1) 
 		queue_free()

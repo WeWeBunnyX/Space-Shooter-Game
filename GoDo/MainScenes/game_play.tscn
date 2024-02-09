@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dk2nd52gl5f4x"]
+[gd_scene load_steps=8 format=3 uid="uid://dk2nd52gl5f4x"]
 
 [ext_resource type="PackedScene" uid="uid://6xabkku7re5v" path="res://Player/player.tscn" id="1_0yfpn"]
 [ext_resource type="Texture2D" uid="uid://dlg6i86spfgre" path="res://Textures/SpaceShooter_Assets/backgroundColor.png" id="1_07lpr"]
 [ext_resource type="Texture2D" uid="uid://dc05rkilpc2j7" path="res://Textures/SpaceShooter_Assets/starBig.png" id="3_kw8kq"]
 [ext_resource type="PackedScene" uid="uid://4ch2j12nowr2" path="res://MainScenes/hud.tscn" id="5_6imay"]
-[ext_resource type="Script" path="res://MainScenes/Spawner.gd" id="5_xqcma"]
+[ext_resource type="PackedScene" uid="uid://dyddrbmuy6r6n" path="res://MainScenes/spawner.tscn" id="5_641kn"]
+[ext_resource type="Script" path="res://MainScenes/Camera2D.gd" id="6_mmj5t"]
+
+[sub_resource type="GDScript" id="GDScript_yh1ca"]
 
 [node name="GamePlay" type="Node2D"]
+script = SubResource("GDScript_yh1ca")
 
 [node name="Background" type="Sprite2D" parent="."]
 scale = Vector2(3.01333, 3.97333)
@@ -40,12 +44,9 @@ offset_bottom = 5.0
 
 [node name="Player" parent="." instance=ExtResource("1_0yfpn")]
 position = Vector2(225, 303)
-FireDelayTimer = 0.1
 
-[node name="Spawner" type="Node2D" parent="."]
-position = Vector2(234, 16)
-script = ExtResource("5_xqcma")
+[node name="Spawner" parent="." instance=ExtResource("5_641kn")]
 
-[node name="SpawnerTime" type="Timer" parent="Spawner"]
-
-[connection signal="timeout" from="Spawner/SpawnerTime" to="Spawner" method="_on_spawner_time_timeout"]
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+script = ExtResource("6_mmj5t")

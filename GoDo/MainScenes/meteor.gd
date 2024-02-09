@@ -27,11 +27,15 @@ func _physics_process(delta):
 	position.y+=speed*delta
 
 func damage(amount: int):
+	if life<=0: #https://www.youtube.com/watch?v=sYHiMJe1HcQ&list=PLah6faXAgguPlyHWM5G9in10UzRcdeb2R&index=32
+		return    #No duplicate score effect
+
 	life-=amount
 	if life<=0:
 		var effect:=pMeteorEffect.instantiate()     #Meteror break effect
 		effect.position=position                    #Meteror break effect
 		get_parent().add_child(effect)              #Meteror break effect         
+		Signals.emit_signal("on_score_increment", 2)
 		queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():

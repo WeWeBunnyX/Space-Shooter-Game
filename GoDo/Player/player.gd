@@ -9,10 +9,15 @@ var plBullet:= preload("res://MainScenes/bullet.tscn")
 #FireDelay Timer
 @onready var invincibilityTimer:=$InvincibilityTimer
 @onready var firedelay:=$FireDelayTimer
+@onready var RapidFireTimer:=$RapidFireTimer
+
 @onready var shieldSprite:=$Shield
 
 @export var speed: float = 100
-@export var FireDelayTimer : float=0.1
+
+@export var normalFireDelay:float = 0.12
+@export var rapidFireDelay:float = 0.08
+var FireDelayTimer : float= normalFireDelay
 @export var DamageInvincibilityTime:=2.0
 @export var life : int=3
 var vel: Vector2 = Vector2(0, 0)
@@ -61,16 +66,32 @@ func _physics_process(delta):
 func damage(amount:int):
 	if !invincibilityTimer.is_stopped():
 		return
+		
+	applyShield(DamageInvincibilityTime)
 	
-	invincibilityTimer.start(DamageInvincibilityTime)
-	shieldSprite.visible=true
+	#invincibilityTimer.start(DamageInvincibilityTime)  Cut n pasted in applyShield function below
+	#shieldSprite.visible=true
 	
 	life-=amount
 	Signals.emit_signal("on_player_life_change", life)
-
+	var cam:=get_tree().current_scene.find_child("Camera2D",true,false)  #Shake camera
+	cam.shake(10)
+	
 	if life<=0:
 		queue_free()
 
+func applyShield(time:float):
+	invincibilityTimer.start(time+invincibilityTimer.time_left)
+	shieldSprite.visible=true
+	
+func applyRapidFireUp(time:float):
+	FireDelayTimer=rapidFireDelay
+	RapidFireTimer.start(time+RapidFireTimer.time_left)
+	
 
 func _on_invincibility_timer_timeout():   #Disappear Shield when away from meteor after a collision
 	shieldSprite.visible=false
+
+
+func _on_rapid_fire_timer_timeout():
+	FireDelayTimer=normalFireDelay

@@ -50,7 +50,6 @@ animations = [{
 z_index = 100
 script = ExtResource("1_2b78b")
 speed = 200.0
-FireDelayTimer = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -79,8 +78,12 @@ one_shot = true
 [node name="InvincibilityTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="RapidFireTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="Shield" type="Sprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("3_4gwd7")
 
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
+[connection signal="timeout" from="RapidFireTimer" to="." method="_on_rapid_fire_timer_timeout"]
